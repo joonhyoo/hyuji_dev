@@ -1,0 +1,90 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+
+const projects = (await getCollection('portfolio')).sort((a, b) =>
+b.data.id - a.data.id,
+);
+
+const imageModules = import.meta.glob<{ default: any }>(
+  '/src/assets/thumbnails/**/*.{png,jpg,jpeg,webp,svg}',
+);
+
+function getThumbnail(path: string) {
+  const key = `/src/assets/thumbnails/${path}`
+  return imageModules[key]?.();
+}
+---
+<Base title="Projects" description="Things I've built.">
+  <h1 class="my-10 mb-6 text-3xl">projects</h1>
+  <ul class="grid gap-5 list-none m-0 p-0">
+    {
+      projects.map((project) => (
+        <li class="bg-surface border border-border rounded-xl overflow-hidden">
+          {project.data.thumbnails.length > 0 && (
+          <div class="p-2 rounded-md">
+            <div class="rounded-md flex gap-5 overflow-x-auto">
+              {project.data.thumbnails.map(async (thumb_title) => {
+                const path = String(project.data.id) + '/' + thumb_title;
+                const image = await getThumbnail(path);
+
+                return image && (
+                  <Image
+                    src={image.default}
+                    alt={`${project.data.title} screenshot`}
+                    class="rounded-md h-70 w-auto max-w-none shrink-0"
+                  />
+                );
+              })}
+          </div>
+            </div>
+          )}
+          <div class="p-5 border-t border-border">
+            {project.data.kind && (
+              <p class="text-muted m-0 mb-1 text-[0.7rem] uppercase tracking-wider">
+                {project.data.kind}
+              </p>
+            )}
+            <h2 class="text-[1.2rem] m-0 mb-2">{project.data.title}</h2>
+            <p class="text-muted m-0 text-[0.95rem]">{project.data.summary}</p>
+            {project.data.tags.length > 0 && (
+              <ul class="flex flex-wrap gap-1.5 list-none mt-4 mb-0 p-0">
+                {project.data.tags.map((tag) => (
+                  <li class="text-xs text-accent border border-border rounded-full py-1 px-3">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {(project.data.github || project.data.live) && (
+              <div class="flex gap-4 mt-4">
+                <h2>Links</h2>
+                {project.data.github && (
+                  <a
+                    href={project.data.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm"
+                  >
+                    Source Code
+                  </a>
+                )}
+                {project.data.live && (
+                  <a
+                    href={project.data.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm"
+                  >
+                    Live
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</Base>

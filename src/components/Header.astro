@@ -1,0 +1,15 @@
+---
+const links = [
+  { href: '/projects/', label: 'projects' },
+  { href: '/blog/', label: 'blog' },
+];
+---
+
+<header class="border-b border-border">
+  <div class="mx-auto max-w-[720px] px-5 flex items-center justify-between py-4">
+    <a class="font-bold text-text hover:no-underline hover:text-accent" href="/">hyuji.dev</a>
+    <nav class="flex gap-6">
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+  </div>
+</header>
