@@ -4,9 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  //site: 'https://hyuji.dev',
-  site: 'https://joonhyoo.github.io',
-  base: '/hyuji_dev',
+  site: 'https://hyuji.dev',
   integrations: [sitemap()],
 
   vite: {
