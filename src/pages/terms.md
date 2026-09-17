@@ -64,4 +64,4 @@ I may update these terms from time to time. Changes take effect when posted on t
 
 ## Contact
 
-Questions? Email joon@[thisdomain]
+Questions? Email joon[at]hyuji.dev

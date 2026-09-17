@@ -50,7 +50,7 @@ This information exists to run the coaching relationship: so your coach can buil
 
 ### How long we keep it
 
-We keep your data as long as your account is active. If you'd like your data deleted, email joon@[thisdomain] and we'll remove it.
+We keep your data as long as your account is active. If you'd like your data deleted, email joon[at]hyuji.dev and we'll remove it.
 
 ### Security
 
@@ -66,4 +66,4 @@ If this policy changes, the updated version will be posted on this page.
 
 ## Contact
 
-Questions? Email joon@[thisdomain]
+Questions? Email joon[at]hyuji.dev
