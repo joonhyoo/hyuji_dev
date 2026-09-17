@@ -15,8 +15,8 @@ const { Content } = await render(post);
 ---
 
 <Base title={post.data.title} description={post.data.description}>
-  <article class="whitespace-pre-wrap">
-    <header class="my-10 mb-8">
+  <article class="blog-post">
+    <header class="mt-15 mb-8">
       <h1 class="mb-2 text-2xl">{post.data.title}</h1>
       <time datetime={post.data.pubDate.toISOString()} class="text-muted text-[0.9rem]">
         {post.data.pubDate.toLocaleDateString('en-US', {
